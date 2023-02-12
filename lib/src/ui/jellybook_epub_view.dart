@@ -373,6 +373,27 @@ class _EpubViewState extends State<EpubView> {
       itemScrollController: _itemScrollController,
       itemPositionsListener: _itemPositionListener,
       itemBuilder: (BuildContext context, int index) {
+        // add the _buildCover function here because it is the first item
+        if (index == 0) {
+          // return both the cover and the first chapter
+          return Column(
+            children: [
+              if (_getCoverImage() != null) _getCoverImage()!,
+              widget.builders.chapterBuilder(
+                context,
+                widget.builders,
+                widget.controller._document!,
+                _chapters,
+                _paragraphs,
+                index,
+                _getChapterIndexBy(positionIndex: index),
+                _getParagraphIndexBy(positionIndex: index),
+                _onLinkPressed,
+              ),
+            ],
+          );
+        }
+
         return widget.builders.chapterBuilder(
           context,
           widget.builders,
@@ -388,13 +409,21 @@ class _EpubViewState extends State<EpubView> {
     );
   }
 
-  // find the image of the cover and return it
-  ImageProvider? _getCoverImage() {
-    if (widget.controller._document!.Content!.Images!.isNotEmpty) {
-      final coverImage = widget.controller._document!.Content!.Images!.values
-          .firstWhereOrNull((image) => image.Name == 'cover');
+  Image? _getCoverImage() {
+    if (widget.controller._document!.Content!.Images!.entries.first.key !=
+        null) {
+      final coverImage = widget
+          .controller._document!.Content!.Images!.entries.first.value.Content;
+      // save the image to files
       if (coverImage != null) {
-        return MemoryImage(Uint8List.fromList(coverImage.Content!));
+        return Image(
+          image: MemoryImage(
+            Uint8List.fromList(
+              widget.controller._document!.Content!.Images!.entries.first.value
+                  .Content!,
+            ),
+          ),
+        );
       }
     }
     return null;
@@ -444,7 +473,6 @@ class _EpubViewState extends State<EpubView> {
   @override
   Widget build(BuildContext context) {
     return widget.builders.builder(
-      _getCoverImage(),
       context,
       widget.builders,
       _controller.loadingState.value,
