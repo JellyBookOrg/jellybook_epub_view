@@ -1,4 +1,4 @@
-name: epub_view_example
+name: jellyfin_epub_view_example
 description: Example
 version: 1.0.0+1
 publish_to: 'none'
