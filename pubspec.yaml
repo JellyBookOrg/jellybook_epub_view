@@ -21,6 +21,9 @@ dependencies:
   universal_file: ^1.0.0
   image: ^4.0.15
 
+dependency_overrides:
+  image: ^4.0.15
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
