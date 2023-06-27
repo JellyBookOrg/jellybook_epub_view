@@ -42,7 +42,7 @@ packages:
     source: hosted
     version: "1.1.1"
   collection:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: collection
       sha256: "4a07be6cb69c84d677a6c3096fcf960cc3285a8330b4603e0d463d15d9bd934c"
@@ -74,7 +74,7 @@ packages:
     source: hosted
     version: "0.17.3"
   epubx:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: epubx
       sha256: "641bf7b96fdb9f0b7a28e4075b4c3e6bd3685911366aa823ee328f5b3fe30e57"
@@ -82,7 +82,7 @@ packages:
     source: hosted
     version: "3.0.0"
   equatable:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: equatable
       sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
@@ -103,7 +103,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_html:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_html
       sha256: "02ad69e813ecfc0728a455e4bf892b9379983e050722b1dce00192ee2e41d1ee"
@@ -124,7 +124,7 @@ packages:
     source: sdk
     version: "0.0.0"
   html:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: html
       sha256: "3a7812d5bcd2894edf53dfaf8cd640876cf6cef50a8f238745c8b8120ea74d3a"
@@ -139,6 +139,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.3"
+  jellybook_epub_view:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "3.0.0"
   js:
     dependency: transitive
     description:
@@ -220,7 +227,7 @@ packages:
     source: hosted
     version: "3.2.1"
   scrollable_positioned_list:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: scrollable_positioned_list
       sha256: "1b54d5f1329a1e263269abc9e2543d90806131aa14fe7c6062a8054d57249287"
@@ -289,7 +296,7 @@ packages:
     source: hosted
     version: "1.3.2"
   universal_file:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: universal_file
       sha256: d1a957fccaad2a32023b62fe435b273ee47aaf2eb804709795e4bf4afff50960

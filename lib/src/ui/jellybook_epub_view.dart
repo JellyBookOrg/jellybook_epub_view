@@ -22,9 +22,9 @@ const _minLeadingEdge = -0.05;
 typedef ExternalLinkPressed = void Function(String href);
 
 class EpubView extends StatefulWidget {
-  const EpubView({
+  const EpubView(
+    this.onExternalLinkPressed, {
     required this.controller,
-    this.onExternalLinkPressed,
     this.onChapterChanged,
     this.onDocumentLoaded,
     this.onDocumentError,
@@ -36,7 +36,7 @@ class EpubView extends StatefulWidget {
   }) : super(key: key);
 
   final EpubController controller;
-  final ExternalLinkPressed? onExternalLinkPressed;
+  final ExternalLinkPressed onExternalLinkPressed;
   final bool shrinkWrap;
   final void Function(EpubChapterViewValue? value)? onChapterChanged;
 
@@ -340,26 +340,38 @@ class _EpubViewState extends State<EpubView> {
           builders.chapterDividerBuilder(chapters[chapterIndex]),
         Html(
           data: paragraphs[index].element.outerHtml,
-          onLinkTap: (href, _, __, ___) => onExternalLinkPressed(href!),
+          onLinkTap: (href, _, __) => onExternalLinkPressed(href!),
           style: {
             'html': Style(
-              padding: options.paragraphPadding as EdgeInsets?,
+              padding: HtmlPaddings.all(0),
             ).merge(Style.fromTextStyle(options.textStyle)),
           },
-          customRenders: {
-            tagMatcher('img'):
-                CustomRender.widget(widget: (context, buildChildren) {
-              final url = context.tree.element!.attributes['src']!
-                  .replaceAll('../', '');
-              return Image(
-                image: MemoryImage(
-                  Uint8List.fromList(
-                    document.Content!.Images![url]!.Content!,
-                  ),
-                ),
-              );
-            }),
-          },
+          // extensions: [
+          // HtmlExtension(
+          //   'img',
+          //   (node, _) {
+          //     final src = node.attributes['src']!;
+          //     final image = document.Content!.Images![src]!;
+          //     final imageProvider = MemoryImage(
+          //       Uint8List.fromList(image.Content!),
+          //     );
+          //     return Image(image: imageProvider);
+          //   },
+          // ),
+          // customRenders: {
+          //   tagMatcher('img'):
+          //       CustomRender.widget(widget: (context, buildChildren) {
+          //     final url = context.tree.element!.attributes['src']!
+          //         .replaceAll('../', '');
+          //     return Image(
+          //       image: MemoryImage(
+          //         Uint8List.fromList(
+          //           document.Content!.Images![url]!.Content!,
+          //         ),
+          //       ),
+          //     );
+          //   }),
+          // },
         ),
       ],
     );
