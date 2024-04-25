@@ -1,4 +1,4 @@
-import 'package:epub_view/epub_view.dart';
+import 'package:jellybook_epub_view/jellybook_epub_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemChrome, SystemUiOverlayStyle;
 
